@@ -8,7 +8,7 @@ using Gardenity.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var userDataConnectionString = builder.Configuration.GetConnectionString("DataConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+var userDataConnectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(userDataConnectionString));
 
