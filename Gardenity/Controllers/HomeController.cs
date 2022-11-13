@@ -1,4 +1,5 @@
 ﻿using Gardenity.Models;
+using Gardenity.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,14 +8,17 @@ namespace Gardenity.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly INotificationSender _sendNotif;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, INotificationSender sendNotif)
         {
             _logger = logger;
+            _sendNotif = sendNotif;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            //_ = await _sendNotif.SendText("+18579710700", "Helloworld");
             return View();
         }
 
@@ -24,6 +28,12 @@ namespace Gardenity.Controllers
         }
 
         public IActionResult Main()
+        {
+
+            return View();
+        }
+
+        public IActionResult Create()
         {
             return View();
         }

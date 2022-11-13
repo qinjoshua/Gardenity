@@ -1,5 +1,6 @@
 using System.Configuration;
 using Gardenity.Data;
+using Gardenity.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Gardenity.Models;
@@ -16,6 +17,9 @@ builder.Services.AddDbContext<GardenContext>(options =>
                 options.UseSqlServer(dataConnectionString));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services.Configure<SendNotificationSettings>(builder.Configuration.GetSection(SendNotificationSettings.Label));
+builder.Services.AddTransient<INotificationSender, NotificationSender>();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.User.RequireUniqueEmail = true).AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
