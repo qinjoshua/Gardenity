@@ -188,19 +188,18 @@ window.onload = function () {
         // set a flag indicating the drag has begun
         isDown = true;
 
-        //if (!keepAddingPlots) {
-        //    allPlotNames = Object.keys(garden.plots)
-        //    for (let plot = 0; plot < allPlotNames.length; plot++) {
-        //        plotToFill = allPlotNames[plot]
-        //        specPlot = garden.plots[plotToFill]
-        //        if (e.clientX > specPlot.x && e.clientX < specPlot.x + specPlot.width && e.clientY > specPlot.y && e.clientY < specPlot.y + specPlot.height) {
-        //            var modal = document.getElementById("myModal");
-        //            modal.style.display = "block";
+        if (!keepAddingPlots) {
+            allPlotNames = Object.keys(garden.plots)
+            for (let plot = 0; plot < allPlotNames.length; plot++) {
+                plotToFill = allPlotNames[plot]
+                specPlot = garden.plots[plotToFill]
+                if (e.clientX - offsetX > specPlot.x && e.clientX - offsetX < specPlot.x + specPlot.width && e.clientY - offsetY > specPlot.y && e.clientY - offsetY < specPlot.y + specPlot.height) {
+                    $('#largeModal').modal('show');
 
-        //        }
-        //    }
+                }
+            }
 
-        //}
+        }
     }
 
     function handleMouseUp(e) {
