@@ -1,10 +1,12 @@
 <!-- <div id="theMap">
     <img class="plot" src="/images/grass.jpg" alt="Workplace" usemap="#workmap">
 </div> -->
-<img class="plot" src="/images/grass.jpg" alt="Workplace" usemap="#workmap">
-<map name="workmap">
-    <area shape="rect" coords="34,44,270,350" class="window" alt="Computer">
-</map>
+<div id="theMap">
+    <img class="plot" src="/images/grass.jpg" alt="Workplace" usemap="#workmap">
+    <map name="workmap">
+        <area shape="rect" coords="34,44,270,350" class="window" alt="Computer">
+    </map>
+</div>
 
 
 <!-- The Modal -->
@@ -14,20 +16,20 @@
   <div class="modal-content">
     <div class="modal-header">
       <span class="close">&times;</span>
-      <h2>Plot Name</h2>
+      <h2 style="text-align:left">Plot Name</h2>
     </div>
     <div class="modal-body">
       <div class="row">
         <div class="left">
-            <h2>Plants</h2>
+            <h3 >Plants</h3>
             <div id="plantCards"></div>
         </div>
-        <div class="middle" style="background-color:#5cb85c">
-            <h2>Tasks</h2>
+        <div class="middle">
+            <h2 style="color:white">Tasks</h2>
             <div id="taskCards"></div>
         </div>
         <div class="right">
-            <h2>People</h2>
+            <h3>People</h3>
             <div id="peopleCards"></div>
         </div>
       </div>
@@ -37,28 +39,14 @@
 </div>
 
 <script>
-    // const setupPlots = () => {
-    //     map = document.getElementById("workmap");
-
-    //     data = ["34,44,270,350"]
-    //     for (let i = 0; i < data.length; i++){
-    //         console.log(data[0]);
-    //         const element = document.createElement( "AREA" );
-    //         element.shape = "rect";
-    //         element.coords = data[0];
-    //         element.id =  "window";
-    //         map.appendChild( element );
-    //         // obj.onmouseover = action;
-    //     }
-    // }
-
-    const templateArea = (dataEntry) => `<area shape="rect" coords="${dataEntry}" class="window" onclick="openModal()">`;
+    const templateArea = (dataEntry) => `<area shape="rect" coords="${dataEntry}" class="window">`;
 
 
     const setupPlots = () => {
         body = document.getElementById("theMap");
 
         data = ["34,44,270,350"]
+        data = ["34,200,270,500"]
         const map = document.createElement('map');
         for (let i = 0; i < data.length; i++){
             createArea(map, data[i])
@@ -118,7 +106,7 @@
 
     const setup = () => {
         setupInfo()
-        //setupPlots()
+        setupPlots()
     }
 
     window.addEventListener('load', setup);
@@ -132,8 +120,11 @@
     var btn = document.getElementsByClassName("window");
 
     // When the user clicks on <span> (x), close the modal
-    btn.onclick = function() {
-        modal.style.display = "block";
+    for(let i = 0; i < btn.length; i++){
+        btn[i].onclick = function() {
+            console.log("test")
+            modal.style.display = "block";
+        }
     }
 
     // btn.on("click", function(e)){

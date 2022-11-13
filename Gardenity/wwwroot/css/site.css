@@ -12,14 +12,14 @@ html {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-html {
+/* html {
   position: relative;
   min-height: 100%;
 }
 
 body {
   margin-bottom: 60px;
-}
+} */
 
 .plot {
   width: 1200px;
@@ -49,7 +49,8 @@ body {
 .modal-content {
   position: fixed;
   bottom: 0;
-  background-color: #fefefe;
+  background-color: #F5E3CD;
+  color: #603D43;
   width: 100%;
   -webkit-animation-name: slideIn;
   -webkit-animation-duration: 0.4s;
@@ -60,9 +61,9 @@ body {
 /* The Close Button */
 .close {
   color: white;
-  float: right;
   font-size: 28px;
   font-weight: bold;
+  text-align: right;
 }
 
 .close:hover,
@@ -74,20 +75,35 @@ body {
 
 .modal-header {
   padding: 2px 16px;
-  background-color: #5cb85c;
+  background-color: #8db45b;
+  font-family: 'Red Hat Display', sans-serif;
   color: white;
 }
 
 .modal-body {padding: 2px 16px;}
 
 /* Create three equal columns that floats next to each other */
-.left, .middle, .right {
+.left, .right {
   float: left;
-  width: 33.33%;
+  width: 30%;
   padding: 10px;
   height: 300px; /* Should be removed. Only for demonstration */
-  background-color: white;
+  background-color: #F5E3CD;
   overflow: auto;
+  text-align: center;
+}
+
+/* Create three equal columns that floats next to each other */
+.middle{
+  float: left;
+  width: 40%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+  background-color: #AB8E81;
+  border-radius: .5rem;
+  overflow: auto;
+  margin-top: 1rem;
+  text-align: center;
 }
 
 /* Clear floats after the columns */
@@ -102,9 +118,12 @@ body {
   transition: 0.3s;
   width: 80%;
   right: 0px;
-  padding: 10px;
-  margin: 0 auto;
-  text-align: left;
+  padding: 1rem 3rem;
+  margin: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: .5rem;
+  text-align: center;
 }
 
 .card:hover {
@@ -134,4 +153,123 @@ body {
 @keyframes fadeIn {
   from {opacity: 0} 
   to {opacity: 1}
+}
+
+/*
+Adding custom CSS
+*/
+body {
+  color: #603D43;
+  background-color: #FFF3E5;
+  font-family: 'Red Hat Display', sans-serif;
+}
+
+nav {
+  background-color: #5F7346;
+}
+
+.navbar-nav {
+  left: 10rem;
+}
+
+.nav-link {
+  color: #FFF3E5;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.nav-link:hover {
+  color: #C7AE92;
+  text-decoration: underline;
+}
+
+.header-title {
+  margin-top: 6rem;
+  width: 70rem;
+}
+
+.btn-primary {
+  border: none;
+  background-color: #6D8CBB;
+}
+
+.btn {
+  border: none;
+}
+
+.garden-main {
+  margin-top: 2rem;
+  padding: 5rem;
+  width: 60rem;
+  height: 20rem;
+  border-radius: 0.5rem;
+  background-color: #9AB874;
+}
+
+.plot {
+  background-color: #8E5C47;
+  border-radius: 0.2rem;
+  color: #FFF3E5;
+  padding: 0.5rem 2rem 2rem 0.8rem;
+  width: 20rem;
+}
+
+.plot:hover {
+  background-color: #B0968B;
+}
+
+/* Sidebar CSS */
+
+.wrapper {
+  width: 100%;
+  align-items: stretch;
+  display: flex;
+  background-color: #F5E3CD;
+  color: #603D43;
+  position: fixed;
+  top: 25rem;
+  height: 100rem;
+
+}
+
+#sidebar.active {
+  margin-left: -250px;
+}
+
+#sidebar {
+  padding: 2rem;
+}
+
+.sidebar-section {
+  margin-left: 6rem;
+  margin-right: 6rem;
+}
+
+.plant-element,
+.person-element,
+.task-element {
+  background-color: white;
+  padding: 1rem 3rem;
+  margin: 1rem;
+  border-radius: 0.5rem;
+}
+
+.task-box {
+  background-color: #AB8E81;
+  padding: 2rem;
+  border-radius: 0.5rem;
+}
+
+.components {
+  display: flex;
+  text-align: center;
+}
+
+
+.dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
 }
