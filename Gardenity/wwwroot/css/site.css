@@ -26,12 +26,6 @@ body {
   margin-bottom: 60px;
 } */
 
-.plot {
-  width: 1200px;
-  height: 600px;
-  object-fit: cover;
-}
-
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
@@ -256,11 +250,13 @@ body {
 }
 
 .plot {
-  background-color: #8E5C47;
-  border-radius: 0.2rem;
-  color: #FFF3E5;
-  padding: 0.5rem 2rem 2rem 0.8rem;
-  width: 20rem;
+    background-color: #8E5C47;
+    border-radius: 1rem;
+    color: #FFF3E5;
+    padding: 0.5rem 2rem 2rem 0.8rem;
+    width: 20rem;
+    margin: 1.5rem;
+    top:10rem;
 }
 
 .plot:hover {
@@ -406,4 +402,11 @@ body {
   padding: 5px;
   background: #5F7346;
   color: white !important
+}
+
+#theMap {
+    background-size: cover;
+    background-image: url("../images/grass.jpg");
+    width: 1200px;
+    height: 600px;
 }
