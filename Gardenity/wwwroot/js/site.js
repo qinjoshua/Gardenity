@@ -166,12 +166,13 @@ window.onload = function () {
         })
 
         // style the context
-        ctx.strokeStyle = "brown";
-        ctx.fillStyle = "brown";
+        ctx.strokeStyle = "#7D462E";
+        ctx.fillStyle = "#7D462E";
         ctx.lineWidth = 3;
         //ctxo.strokeStyle = "brown";
         //ctxo.fillStyle = "brown";
         //ctxo.lineWidth = 3;
+        ctx.stroke();
 
         allPlotNames = Object.keys(garden.plots)
         for (let plot = 0; plot < allPlotNames.length; plot++) {
