@@ -11,14 +11,23 @@
   <div class="modal-content">
     <div class="modal-header">
       <span class="close">&times;</span>
-      <h2>Modal Header</h2>
+      <h2>Plot Name</h2>
     </div>
     <div class="modal-body">
-      <p>Some text in the Modal Body</p>
-      <p>Some other text...</p>
-    </div>
-    <div class="modal-footer">
-      <h3>Modal Footer</h3>
+      <div class="row">
+        <div class="left">
+            <h2>Plants</h2>
+            <div id="plantCards"></div>
+        </div>
+        <div class="middle" style="background-color:#5cb85c">
+            <h2>Tasks</h2>
+            <div id="taskCards"></div>
+        </div>
+        <div class="right">
+            <h2>People</h2>
+            <div id="peopleCards"></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -50,4 +59,50 @@
         modal.style.display = "none";
     }
     }
+
+
+    const templateContainer = (dataEntry) => `<div class="card"><div class="container">${dataEntry.column1}</div></div>`;
+
+    const setupEach = (element, data) => {
+        body = document.getElementById(element);
+
+        const div = document.createElement('div');
+        for (let i = 0; i < data.length; i++){
+            createRow(div, data[i])
+        }
+
+        body.appendChild(div);
+    }
+
+    const setup = () => {
+        var dataPlants = [
+            { column1: 'Tomatos'},
+            { column1: 'Squash'}
+        ];
+        var dataTask = [
+            { column1: 'Water 11/12'},
+            { column1: 'Water 11/28'},
+            { column1: 'Water 11/29'},
+            { column1: 'Water 12/29'},
+            { column1: 'Water 12/29'},
+            { column1: 'Water 12/29'},
+            { column1: 'Water 12/29'},
+            { column1: 'Water 12/29'}
+        ];
+        var dataPeople = [
+            { column1: 'Bob'},
+            { column1: 'Alice'}
+        ];
+        var cols = [{col: 'plantCards', data: dataPlants}, {col: 'taskCards', data: dataTask}, {col: 'peopleCards', data: dataPeople}]
+        for (let i = 0; i < cols.length; i++){
+            setupEach(cols[i].col, cols[i].data)
+        }
+    }
+
+    const createRow = (target, data) => {
+        const html = templateContainer(data);
+        target.insertAdjacentHTML('beforeend', html);
+    }
+
+    window.addEventListener('load', setup);
 </script>
