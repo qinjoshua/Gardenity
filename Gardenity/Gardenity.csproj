@@ -23,4 +23,7 @@
   <ItemGroup>
     <None Remove="EntityFramework" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\images\grass.jpg" />
+  </ItemGroup>
 </Project>
