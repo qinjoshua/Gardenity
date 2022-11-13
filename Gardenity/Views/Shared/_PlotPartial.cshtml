@@ -1,6 +1,9 @@
+<!-- <div id="theMap">
+    <img class="plot" src="/images/grass.jpg" alt="Workplace" usemap="#workmap">
+</div> -->
 <img class="plot" src="/images/grass.jpg" alt="Workplace" usemap="#workmap">
 <map name="workmap">
-    <area id="window" shape="rect" coords="34,44,270,350" alt="Computer">
+    <area shape="rect" coords="34,44,270,350" class="window" alt="Computer">
 </map>
 
 
@@ -34,47 +37,56 @@
 </div>
 
 <script>
-    // Get the modal
-    var modal = document.getElementById("myModal");
+    // const setupPlots = () => {
+    //     map = document.getElementById("workmap");
 
-    // Get the button that opens the modal
-    var btn = document.getElementById("window");
+    //     data = ["34,44,270,350"]
+    //     for (let i = 0; i < data.length; i++){
+    //         console.log(data[0]);
+    //         const element = document.createElement( "AREA" );
+    //         element.shape = "rect";
+    //         element.coords = data[0];
+    //         element.id =  "window";
+    //         map.appendChild( element );
+    //         // obj.onmouseover = action;
+    //     }
+    // }
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+    const templateArea = (dataEntry) => `<area shape="rect" coords="${dataEntry}" class="window" onclick="openModal()">`;
 
-    // When the user clicks the button, open the modal 
-    btn.onclick = function() {
-    modal.style.display = "block";
+
+    const setupPlots = () => {
+        body = document.getElementById("theMap");
+
+        data = ["34,44,270,350"]
+        const map = document.createElement('map');
+        for (let i = 0; i < data.length; i++){
+            createArea(map, data[i])
+        }
+
+        body.appendChild(map);
     }
 
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-    modal.style.display = "none";
+    const createArea = (target, data) => {
+        const html = templateArea(data);
+        target.insertAdjacentHTML('beforeend', html);
     }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-    }
-
 
     const templateContainer = (dataEntry) => `<div class="card"><div class="container">${dataEntry.column1}</div></div>`;
 
-    const setupEach = (element, data) => {
+
+    const setupEachInfo = (element, data) => {
         body = document.getElementById(element);
 
         const div = document.createElement('div');
         for (let i = 0; i < data.length; i++){
-            createRow(div, data[i])
+            createContainer(div, data[i])
         }
 
         body.appendChild(div);
     }
 
-    const setup = () => {
+    const setupInfo = () => {
         var dataPlants = [
             { column1: 'Tomatos'},
             { column1: 'Squash'}
@@ -95,14 +107,57 @@
         ];
         var cols = [{col: 'plantCards', data: dataPlants}, {col: 'taskCards', data: dataTask}, {col: 'peopleCards', data: dataPeople}]
         for (let i = 0; i < cols.length; i++){
-            setupEach(cols[i].col, cols[i].data)
+            setupEachInfo(cols[i].col, cols[i].data)
         }
     }
 
-    const createRow = (target, data) => {
+    const createContainer = (target, data) => {
         const html = templateContainer(data);
         target.insertAdjacentHTML('beforeend', html);
     }
 
+    const setup = () => {
+        setupInfo()
+        //setupPlots()
+    }
+
     window.addEventListener('load', setup);
+
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    var btn = document.getElementsByClassName("window");
+
+    // When the user clicks on <span> (x), close the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // btn.on("click", function(e)){
+    //     e.preventDefault();
+    //     modal.style.display = "block";
+    // }
+    //});
+
+    // When the user clicks the button, open the modal 
+    function openModal () {
+        console.log("test");
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        console.log("test2");
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+    }
 </script>
