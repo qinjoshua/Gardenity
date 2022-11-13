@@ -33,7 +33,13 @@
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Main">Main</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Create">Create</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Create">Create</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Calendar">Calendar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="GardenList">My Gardens</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -47,11 +53,6 @@
         </main>
     </div>
 
-    <footer class="footer text-muted">
-        <div class="container">
-            &copy; 2022 - Gardenity - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

@@ -1,0 +1,72 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Header Start -->
+<section class="header-bg align-items-center position-relative d-flex" id="top">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="header-title">
+                    <h1 class="font-weight-bold main-title mb-4 garden-title">My Gardens</h1>
+                </div>
+            </div>
+            <div>
+                <div id="gardens">
+                    <!-- <div class="garden-element">
+                        <h3>Garden #1</h3>
+                        <p class="date"> Created on 10th of July (20 participants) </p>
+                        <p class="description"> dfhds fd klfds fsdhfk sdhfj sf djkfh kjshdf dh ld fklj fjkls riwe po
+                            disukj lkjdk ewriq wroq nm.</p>
+                    </div>
+                    <div class="garden-element">
+                        <h3>Garden #2</h3>
+                        <p class="date"> Created on 10th of July (20 participants) </p>
+                        <p class="description"> dfhds fd klfds fsdhfk sdhfj sf djkfh kjshdf dh ld fklj fjkls riwe po
+                            disukj lkjdk ewriq wroq nm.</p>
+                    </div>
+                    <div class="garden-element">
+                        <h3>Garden #3</h3>
+                        <p class="date"> Created on 10th of July (20 participants) </p>
+                        <p class="description"> dfhds fd klfds fsdhfk sdhfj sf djkfh kjshdf dh ld fklj fjkls riwe po
+                            disukj lkjdk ewriq wroq nm.</p>
+                    </div>
+                    <div class="garden-element">
+                        <h3>Garden #4</h3>
+                        <p class="date"> Created on 10th of July (20 participants) </p>
+                        <p class="description"> dfhds fd klfds fsdhfk sdhfj sf djkfh kjshdf dh ld fklj fjkls riwe po
+                            disukj lkjdk ewriq wroq nm.</p>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Header End -->
+</html>
+<script>
+    function createGardenList() {
+        const garden1 = ["Garden #1", "Created on 10th of July (20 participants)", "dfhds fd klfds fsdhfk sdhfj sf djkfh kjshdf dh ld fklj fjkls riwe podisukj lkjdk ewriq wroq nm."];
+        const garden2 = ["Garden #2", "Created on 10th of July (20 participants)", "dfhds fd klfds fsdhfk sdhfj sf djkfh kjshdf dh ld fklj fjkls riwe podisukj lkjdk ewriq wroq nm."];
+        const garden3 = ["Garden #3", "Created on 10th of July (20 participants)", "dfhds fd klfds fsdhfk sdhfj sf djkfh kjshdf dh ld fklj fjkls riwe podisukj lkjdk ewriq wroq nm."];
+        const gardens = [garden1, garden2, garden3];
+
+        htmlText = "";
+        for (let i = 0; i < gardens.length; i++) {
+            garden = gardens[i];
+            htmlText = htmlText + "<div class=\"garden-element\">";
+            htmlText = htmlText + "<h3>" + garden[0] + "</h3>";
+            htmlText = htmlText + "<p class=\"date\">" + garden[1] + "</p>";
+            htmlText = htmlText + "<p class=\"description\">" + garden[2] + "</p>";
+            htmlText = htmlText + "</div>";
+        }
+        console.log(htmlText);
+        const gardenList = document.getElementById('gardens');
+        console.log(gardenList);
+        gardenList.innerHTML = htmlText;
+    }
+
+    window.addEventListener('load', createGardenList);
+</script>

@@ -320,3 +320,24 @@ body {
   right: 20px;
   transform: translateY(-50%);
 }
+
+/*List of Gardens*/
+.garden-element {
+  background-color: #F5E3CD;
+  margin: 1.5rem;
+  padding: 1rem 2rem 1rem 2rem;
+  border-radius: 0.5rem;
+}
+
+.date {
+  color: #5F7346;
+}
+
+.description {
+  color: black;
+  font-weight: 500;
+}
+
+.garden-title {
+  text-align: center;
+}
