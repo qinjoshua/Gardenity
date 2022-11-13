@@ -196,10 +196,12 @@ canvas {
 
 #canvasWrapper {
     position: relative;
+    left: 16%;
 }
 
 #save {
     position: relative;
+    left: 16%;
 }
 /*
 Adding custom CSS

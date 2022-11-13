@@ -84,7 +84,7 @@ window.onload = function () {
     var plotNames = 0;
 
     function resize() {
-        CANVAS_WIDTH = 500;
+        CANVAS_WIDTH = 750;
         CANVAS_HEIGHT = 500;
         canvas.width = CANVAS_WIDTH;
         canvas.height = CANVAS_HEIGHT;
@@ -152,12 +152,18 @@ window.onload = function () {
     function drawFrame() {
 
         var background = new Image();
-        background.src = "/images/grass.jpg";
+        background.src = "/images/grid.jpg";
 
         // Make sure the image is loaded first otherwise nothing will draw.
-        background.onload = function () {
-            ctx.drawImage(background, 0, 0);
-        }
+        //background.onload = function () {
+        //    ctx.drawImage(background, 0, 0);
+        //}
+
+        background.addEventListener('load', () => {
+            const ptrn = ctx.createPattern(background, 'repeat'); // Create a pattern with this image, and set it to "repeat".
+            ctx.fillStyle = ptrn;
+            ctx.fillRect(0, 0, canvas.width, canvas.height); // context.fillRect(x, y, width, height);
+        })
 
         // style the context
         ctx.strokeStyle = "brown";
@@ -291,13 +297,4 @@ window.onload = function () {
 $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
 })
-
-//document.querySelector('#save').addEventListener('click', () => {
-//    var canvas = document.querySelector("canvas");
-//    var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-
-//    var element = document.createElement('a');
-//    var filename = 'test.png';
-//    element.setAttribute('href', image);
-//    element.setAttribute('download', filename);
 
