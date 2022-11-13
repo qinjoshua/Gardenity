@@ -2,6 +2,62 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to Gardenity</h1>
+
+
+<div class="quote">
+    <h1 class="highlighted">Small Task, Big Reward</h1> 
+    <h5 class="highlighted">Gardenity is the best collaborative gardening tool for passionate, amateur, and novice gardners.</h5>
+    <button onclick="location.href='\Gardenity\Areas\Identity\Pages\Account\Register.cshtml'" class="btn"> Register Now! </button>
 </div>
+
+<style>
+        body {
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+        h1 {
+            font-size: 100px;
+            color: white;
+            margin-top: 12rem;
+        }
+
+        .highlighted {
+            background-color: rgba(0,0,0,.5);
+            text-align: center;        }
+
+        h5 {
+            font-size: 25px;
+            color: white;
+            margin-top: 1rem;
+        }
+
+    </style>
+
+<script type="text/javascript">
+
+    var images = [];
+
+    images[0] = ['/images/Gardenity1.jpg'];
+    images[1] = ['/images/Gardenity2.jpg'];
+    images[2] = ['/images/Gardenity3.jpg'];
+    images[3] = ['/images/Gardenity4.jpg'];
+    images[4] = ['/images/Gardenity5.jpg'];
+    var index = 0;
+
+    function change() {
+        document.body.style.backgroundImage = "url('" + images[index] + "')";
+        console.log(index)
+
+        if (index == 4) {
+            index = 0;
+        } else {
+            index++;
+        }
+
+        setTimeout(change, 5000);
+    }
+
+    window.onload = change();
+</script>
