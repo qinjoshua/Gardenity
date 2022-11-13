@@ -21,16 +21,49 @@
     <div class="modal-body">
       <div class="row">
         <div class="left">
-            <h3 >Plants</h3>
-            <div id="plantCards"></div>
+            <h3>Plants</h3>
+            <span id="addPlant" class="add">&oplus;</span>
+            <div id="left" class="col-format">
+                <div id="plantCards"></div>
+            </div>
+            <div id="left-form" class="hiddenForm">
+                <div>Add a plant!</div>
+                <form>
+                    <label for="ptype">Plant Type:</label><br>
+                    <input type="text" id="ptype" name="ptype" value="Tomato"><br>
+                    <input type="submit" id="submitPlant" value="Submit">
+                </form> 
+            </div>
         </div>
         <div class="middle">
             <h2 style="color:white">Tasks</h2>
-            <div id="taskCards"></div>
+            <span id="addTasks" class="add">&oplus;</span>
+            <div id="middle" class="col-format">
+                <div id="taskCards"></div>
+            </div>
+            <div id="middle-form" class="hiddenForm">
+                <div style="color:white">Add a task!</div>
+                <form>
+                    <label for="task">Task:</label><br>
+                    <input type="text" id="task" name="task" value="Water Plants"><br>
+                    <input type="submit" id="submitTask" value="Submit">
+                </form> 
+            </div>
         </div>
         <div class="right">
             <h3>People</h3>
-            <div id="peopleCards"></div>
+            <span id="addPeople" class="add">&oplus;</span>
+            <div id="right" class="col-format">
+                <div id="peopleCards"></div>
+            </div>
+            <div id="right-form" class="hiddenForm">
+               <div>Add a collaborator!</div>
+                <form>
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" name="name" value="John Doe"><br>
+                    <input type="submit" id="submitPerson" value="Submit">
+                </form> 
+            </div>
         </div>
       </div>
     </div>
@@ -39,27 +72,6 @@
 </div>
 
 <script>
-    const templateArea = (dataEntry) => `<area shape="rect" coords="${dataEntry}" class="window">`;
-
-
-    const setupPlots = () => {
-        body = document.getElementById("theMap");
-
-        data = ["34,44,270,350"]
-        data = ["34,200,270,500"]
-        const map = document.createElement('map');
-        for (let i = 0; i < data.length; i++){
-            createArea(map, data[i])
-        }
-
-        body.appendChild(map);
-    }
-
-    const createArea = (target, data) => {
-        const html = templateArea(data);
-        target.insertAdjacentHTML('beforeend', html);
-    }
-
     const templateContainer = (dataEntry) => `<div class="card"><div class="container">${dataEntry.column1}</div></div>`;
 
 
@@ -104,44 +116,22 @@
         target.insertAdjacentHTML('beforeend', html);
     }
 
-    const setup = () => {
-        setupInfo()
-        setupPlots()
-    }
-
-    window.addEventListener('load', setup);
+    window.addEventListener('load', setupInfo);
 
     // Get the modal
     var modal = document.getElementById("myModal");
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
     var btn = document.getElementsByClassName("window");
-
-    // When the user clicks on <span> (x), close the modal
     for(let i = 0; i < btn.length; i++){
         btn[i].onclick = function() {
-            console.log("test")
             modal.style.display = "block";
         }
     }
 
-    // btn.on("click", function(e)){
-    //     e.preventDefault();
-    //     modal.style.display = "block";
-    // }
-    //});
-
-    // When the user clicks the button, open the modal 
-    function openModal () {
-        console.log("test");
-        modal.style.display = "block";
-    }
-
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
-        console.log("test2");
         modal.style.display = "none";
     }
 
@@ -151,4 +141,30 @@
         modal.style.display = "none";
     }
     }
+
+    var addPlant = document.getElementById("addPlant");
+    var left = document.getElementById("left");
+    var leftForm = document.getElementById("left-form");
+    addPlant.onclick = function() {
+        left.style.display = "none";
+        leftForm.style.display = "block";
+    }
+
+    var addTask = document.getElementById("addTasks");
+    var middle = document.getElementById("middle");
+    var middleForm = document.getElementById("middle-form");
+    addTask.onclick = function() {
+        middle.style.display = "none";
+        middleForm.style.display = "block";
+    }
+
+    var addPeople = document.getElementById("addPeople");
+    var right = document.getElementById("right");
+    var rightForm = document.getElementById("right-form");
+    addPeople.onclick = function() {
+        right.style.display = "none";
+        rightForm.style.display = "block";
+    }
+
+
 </script>

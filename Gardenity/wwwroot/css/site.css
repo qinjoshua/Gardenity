@@ -47,7 +47,8 @@ body {
   -webkit-animation-name: fadeIn; /* Fade in the background */
   -webkit-animation-duration: 0.4s;
   animation-name: fadeIn;
-  animation-duration: 0.4s
+  animation-duration: 0.4s;
+  resize: vertical;
 }
 
 /* Modal Content */
@@ -64,7 +65,7 @@ body {
 }
 
 /* The Close Button */
-.close {
+.close, .add {
   color: white;
   font-size: 28px;
   font-weight: bold;
@@ -72,44 +73,74 @@ body {
 }
 
 .close:hover,
-.close:focus {
+.close:focus,
+.add:hover,
+.add:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
 }
+
 
 .modal-header {
   padding: 2px 16px;
   background-color: #8db45b;
   font-family: 'Red Hat Display', sans-serif;
   color: white;
+  resize: vertical;
 }
 
 .modal-body {padding: 2px 16px;}
 
 /* Create three equal columns that floats next to each other */
-.left, .right {
-  float: left;
+.left {
   width: 30%;
-  padding: 10px;
-  height: 300px; /* Should be removed. Only for demonstration */
+  height: 500px; 
   background-color: #F5E3CD;
-  overflow: auto;
+  float: left;
+  padding: 10px;
+  border-radius: .5rem;
+  margin-top: 1rem;
   text-align: center;
+  position: relative
 }
 
 /* Create three equal columns that floats next to each other */
 .middle{
-  float: left;
   width: 40%;
-  padding: 10px;
-  height: 300px; /* Should be removed. Only for demonstration */
+  height: 500px; 
   background-color: #AB8E81;
+  float: left;
+  padding: 10px;
   border-radius: .5rem;
-  overflow: auto;
   margin-top: 1rem;
   text-align: center;
+  position: relative
 }
+
+.right {
+  width: 30%;
+  height: 500px; 
+  background-color: #F5E3CD;
+  float: left;
+  padding: 10px;
+  border-radius: .5rem;
+  margin-top: 1rem;
+  text-align: center;
+  position: relative
+}
+
+/* Create three equal columns that floats next to each other */
+.col-format{
+  max-height:100%;
+  overflow: auto;
+}
+
+/* Create three equal columns that floats next to each other */
+.hiddenForm{
+  display: none; /* Hidden by default */
+}
+
 
 /* Clear floats after the columns */
 .row:after {
