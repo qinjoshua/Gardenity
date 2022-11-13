@@ -18,7 +18,7 @@ namespace Gardenity.Controllers
 
         public async Task<IActionResult> Index()
         {
-            _ = await _sendNotif.SendText("+18579710700", "Helloworld");
+            //_ = await _sendNotif.SendText("+18579710700", "Helloworld");
             return View();
         }
 
