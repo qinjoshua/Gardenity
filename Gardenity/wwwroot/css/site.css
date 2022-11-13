@@ -135,3 +135,18 @@ body {
   from {opacity: 0} 
   to {opacity: 1}
 }
+body {
+    background-color: ivory;
+}
+
+canvas {
+    border: 1px solid black;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#canvasWrapper {
+    position: relative;
+}
+
