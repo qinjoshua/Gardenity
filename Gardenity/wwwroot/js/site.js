@@ -8,27 +8,27 @@ class Garden {
     /**
      * */
     constructor() {
-        this.plots = Array(0)
+        this.plots = {}
     }
 
     addPlot(plot) {
-        this.plots.push(plot)
+        this.plots[plot.name] = plot;
     }
 }
 
 class Plot {
     /**
      * */
-    constructor(x, y, width, height) {
+    constructor(x, y, width, height, name) {
         this.x = x
         this.y = y
         this.width = width
         this.height = height
-        this.name = ""
+        this.name = name
         this.plants = Array(0)
     }
 
-    addName(name) {
+    changeName(name) {
         this.name = name
     }
 
@@ -37,6 +37,14 @@ class Plot {
     }
 }
 
+class PlotOutline {
+    constructor(x, y, width, height) {
+        this.x = x
+        this.y = y
+        this.width = width
+        this.height = height
+    }
+}
 
 
 window.onload = function () {
@@ -44,8 +52,10 @@ window.onload = function () {
     var canvas = document.getElementById("canvas");
     var overlay = document.getElementById("overlay");
     var ctx = canvas.getContext("2d");
-    var ctxo = overlay.getContext("2d");
+    //var ctxo = overlay.getContext("2d");
     var garden = new Garden();
+    var outline = new PlotOutline();
+    var keepAddingPlots = true;
 
     
 
@@ -70,6 +80,8 @@ window.onload = function () {
 
     var prevWidth = 0;
     var prevHeight = 0;
+
+    var plotNames = 0;
 
     function resize() {
         CANVAS_WIDTH = 500;
@@ -144,21 +156,25 @@ window.onload = function () {
 
         // Make sure the image is loaded first otherwise nothing will draw.
         background.onload = function () {
-            ctxo.drawImage(background, 0, 0);
+            ctx.drawImage(background, 0, 0);
         }
 
         // style the context
         ctx.strokeStyle = "brown";
         ctx.fillStyle = "brown";
         ctx.lineWidth = 3;
-        ctxo.strokeStyle = "brown";
-        ctxo.fillStyle = "brown";
-        ctxo.lineWidth = 3;
+        //ctxo.strokeStyle = "brown";
+        //ctxo.fillStyle = "brown";
+        //ctxo.lineWidth = 3;
 
-        for (let plot = 0; plot < garden.plots.length; plot++) {
-            ctxo.fillRect(garden.plots[plot].x, garden.plots[plot].y, garden.plots[plot].width, garden.plots[plot].height);
+        allPlotNames = Object.keys(garden.plots)
+        for (let plot = 0; plot < allPlotNames.length; plot++) {
+            plotToFill = allPlotNames[plot]
+            ctx.fillRect(garden.plots[plotToFill].x, garden.plots[plotToFill].y, garden.plots[plotToFill].width, garden.plots[plotToFill].height);
         }
-
+        if (keepAddingPlots) {
+            ctx.strokeRect(outline.x, outline.y, outline.width, outline.height)
+        }
     }
 
     function handleMouseDown(e) {
@@ -171,17 +187,35 @@ window.onload = function () {
 
         // set a flag indicating the drag has begun
         isDown = true;
+
+        //if (!keepAddingPlots) {
+        //    allPlotNames = Object.keys(garden.plots)
+        //    for (let plot = 0; plot < allPlotNames.length; plot++) {
+        //        plotToFill = allPlotNames[plot]
+        //        specPlot = garden.plots[plotToFill]
+        //        if (e.clientX > specPlot.x && e.clientX < specPlot.x + specPlot.width && e.clientY > specPlot.y && e.clientY < specPlot.y + specPlot.height) {
+        //            var modal = document.getElementById("myModal");
+        //            modal.style.display = "block";
+
+        //        }
+        //    }
+
+        //}
     }
 
     function handleMouseUp(e) {
         e.preventDefault();
         e.stopPropagation();
 
-        // the drag is over, clear the dragging flag
-        isDown = false;
-        ctxo.fillRect(prevStartX, prevStartY, prevWidth, prevHeight);
-        garden.addPlot(new Plot(prevStartX, prevStartY, prevWidth, prevHeight));
-        $('#myModal').modal('show')
+        if (keepAddingPlots) {
+            // the drag is over, clear the dragging flag
+            isDown = false;
+            //ctx.fillRect(prvStartX, prevStartY, prevWidth, prevHeight);
+            garden.addPlot(new Plot(prevStartX, prevStartY, prevWidth, prevHeight, "plot" + plotNames));
+            $('#myModal').modal('show')
+            plotNames = plotNames + 1
+
+        }
     }
 
     function handleMouseOut(e) {
@@ -215,11 +249,15 @@ window.onload = function () {
         var height = mouseY - startY;
 
         // clear the canvas
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // draw a new rect from the start position
         // to the current mouse position
-        ctx.strokeRect(startX, startY, width, height);
+        //ctx.strokeRect(startX, startY, width, height);
+        outline.x = startX;
+        outline.y = startY;
+        outline.width = width;
+        outline.height = height;
 
         prevStartX = startX;
         prevStartY = startY;
@@ -242,8 +280,9 @@ window.onload = function () {
     $("#canvas").mouseout(function (e) {
         handleMouseOut(e);
     });
-
-
+    document.querySelector('#save').addEventListener('click', () => {
+        keepAddingPlots = false;
+    })
     
 
     // Call init to start the game
@@ -253,3 +292,13 @@ window.onload = function () {
 $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
 })
+
+//document.querySelector('#save').addEventListener('click', () => {
+//    var canvas = document.querySelector("canvas");
+//    var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+
+//    var element = document.createElement('a');
+//    var filename = 'test.png';
+//    element.setAttribute('href', image);
+//    element.setAttribute('download', filename);
+
